@@ -1,0 +1,101 @@
+\section{Introduction}
+
+%\begin{itemize}
+%\item I will explain the field of research and its background.
+% \begin{itemize}
+% \item A quantum circuit that realizes quantum computing needs to be designed for each given logical function.
+% \item Any logical function can be designed by combining multiple MCT gates.
+% \item To execute MCT gates on an actual quantum computer, they need to be decomposed into a group of gates called Clifford+T.
+% \item The number of stages of T gates that cannot be executed simultaneously in a quantum circuit is called T-depth.
+% \item Since the execution time of T gates is longer than other Clifford+T gates, T-depth is used as an indicator of cost.
+% \item There is a demand for a design method of quantum circuits that can reduce T-depth.
+% \end{itemize}
+Quantum computers perform calculations using quantum superposition states in quantum mechanics\cite{nielsen2010quantum}.
+Quantum computers have quantum algorithms that can perform calculations faster than conventional computers.
+
+Typical quantum algorithms include Shor's algorithm\cite{shor1999polynomial}, which can quickly solve prime factorization, and Grover's algorithm\cite{grover1996fast}, which can quickly search unorganized databases.
+
+The discovery of these quantum algorithms has led to active research into quantum computers.
+
+It is also believed that physical limitations will make it difficult to improve the performance of integrated circuits\cite{2015Inte81:online}.
+
+For this reason, quantum computers that have calculation methods different from conventional calculation methods are attracting attention.
+
+\par
+
+General quantum algorithms include a part that calculates a logical function\cite{yamashita2008ddmf}.
+
+A quantum circuit that calculates this logical function must be designed for each given logical function.
+
+In quantum circuit design, logical functions are designed using Multiple Controlled Toffoli (MCT) gates\cite{barenco1995elementary}.
+
+To realize the operation of MCT gates, it is necessary to decompose them into a group of gates called Clifford+T.
+
+Among these Clifford+T gates is a gate called a T gate.
+
+The operation time of a T gate is much longer than that of other Clifford+T gates.
+
+For this reason, reducing the T-depth, which is the number of T gates that cannot be executed simultaneously, is an important issue in quantum circuit design.
+
+Decomposition methods for MCT gates that reduce the T-depth are being researched.
+
+%\item Explain the current state of research in this field.
+%\begin{itemize}
+% \item A method has been proposed to reduce the T-depth by decomposing MCT gates.
+% \item In existing methods, the T-depth value for each bit is considered uniform.
+%\end{itemize}
+%\item Then explain what the problem to be solved (the problem addressed in this paper) is.
+%\begin{itemize}
+% \item In existing methods, the T-depth value for each bit is not considered.
+% \item Using bits with a large T-depth first may worsen the T-depth.
+%\end{itemize}
+\par
+When multiple MCT gates are decomposed, differences arise in the T-depth value for each bit, but
+existing MCT gate decomposition methods\cite{abdessaied2016technology,niemann2019t,baker2019decomposing} do not consider this difference. 
+For this reason, in existing decomposition methods for MCT gates,
+when decomposing multiple MCT gates, the T-depth may increase by using bits with larger T-depth values first.
+%\item I will briefly introduce the key idea behind the solution.
+%\begin{itemize}
+% \item Calculate the T-depth for each bit.
+% \item Decompose the MCT gate by using bits with smaller T-depth values ​​first.
+% \item Decompose the MCT gate by using beam search to consider subsequent gates.
+%\end{itemize}
+\gout{Therefore,} in this paper, we propose a method to reduce the T-depth by considering the T-depth value for each bit and
+using bits with smaller T-depth values first.
+\par
+When decomposing multiple MCT gates, greedily using bits with smaller T-depth values may increase the T-depth of the entire circuit.
+For this reason, it is necessary to consider subsequent gates when decomposing MCT gates.
+\gout{Therefore,} in this paper, we also propose a method to reduce the T-depth by decomposing MCT gates, taking into account subsequent gates using beam search.
+%\item Appeal what kind of (experimental) results were obtained (at the table of contents stage, this was a hopeful prediction)
+% \begin{itemize}
+% \item Experiments were performed in the case where the circuit was given uninitialized auxiliary bits and in the case where the auxiliary bits were given with 0.
+% \item Comparison was performed using the maximum T-depth after decomposing all gates
+% \item On average, XX\% of the T-depth was reduced from the existing method
+% \end{itemize}
+\par
+The proposed method and the existing method \cite{abdessaied2016technology,niemann2019t,baker2019decomposing}
+were applied to the benchmark circuit \cite{wille2008revlib}, and a comparative experiment was performed.
+The maximum T-depth in the circuit after applying the method was used as the comparison indicator.
+It was confirmed that the proposed method reduces the maximum T-depth by an average of \rout{17.1}%\rout{compared to the case of applying the existing method. }
+% Average reduction rate of all experimental results.
+%\item Chapter structure
+% \begin{itemize}
+% \item This paper consists of six chapters.
+% \item Chapter 2 describes the basics of quantum circuits and quantum gates.
+% \item Chapter 3 describes the existing decomposition method of MCT gates.
+% \item Chapter 4 describes the method proposed in this paper.
+% \item Chapter 5 describes the evaluation method of the proposed method, experimental results, and considerations.
+% \item Chapter 6 summarizes this paper and describes future issues.
+% \end{itemize}
+\par
+This paper consists of six chapters.
+Chapter 2 describes the basics of quantum circuits, quantum gates, and beam search.
+In Chapter 3, we present a decomposition method for MCT gates that reduces the existing T-depth.
+
+In Chapter 4, we explain a decomposition method for MCT gates that takes into account the T-depth for each bit.
+
+In Chapter 5, we present the evaluation method for the proposed method, experimental results, and discussion.
+
+In Chapter 6, we summarize this research and discuss future issues.
+
+%\end{itemize}

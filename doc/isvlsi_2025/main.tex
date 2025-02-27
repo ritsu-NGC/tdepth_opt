@@ -1,0 +1,116 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{float}
+\usepackage{cite}
+\usepackage{caption}
+\usepackage{amsmath,amssymb,amsfonts}
+% \usepackage{algorithmic}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage[T1]{fontenc}
+\usepackage{mdframed}
+\usepackage{algorithm, algpseudocode} % texlive-science
+\usepackage[braket, qm]{qcircuit}
+
+
+\usepackage[braket, qm]{qcircuit}
+\usepackage{tikz}
+%
+%\input{img/defs}
+%\usepackage{floatrow}
+
+\usepackage{master_thesis}
+%\usepackage{ascmac}
+\usepackage{siunitx}
+\usepackage{enumerate}
+
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\algrenewcommand\algorithmicindent{0.5em}%
+
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+%% \def\thickhline{%
+%%   \noalign{\ifnum0=`}\fi\hrule \@height \thickarrayrulewidth \futurelet
+%%   \reserved@a\@xthickhline}
+
+%% \def\hlinewd#1{%
+%% \noalign{\ifnum0=`}\fi\hrule \@height #1 %
+%% \futurelet\reserved@a\@xhline}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\renewcommand{\baselinestretch}{1.08}
+%\makeatletter
+\newcommand{\figcaption}[1]{\def\@captype{figure}\caption{#1}}
+\newcommand{\tblcaption}[1]{\def\@captype{table}\caption{#1}}
+%\makeatother
+
+\begin{document}
+
+\title{Improving T-depth Management in MCT Gate Decomposition}
+\author{\IEEEauthorblockN{1\textsuperscript{st} David Clarino}
+  \IEEEauthorblockA{\textit{Graduate School of} \\
+    \textit{Information Science and Engineering} \\
+    \textit{Ritsumeikan University}\\
+    Kusatsu, Japan \\
+    dizzy@ngc.is.ritsumei.ac.jp}
+  \and
+  \IEEEauthorblockN{2\textsuperscript{nd} Kouki Hirono}
+  \IEEEauthorblockA{\textit{Graduate School of } \\
+    \textit{Information Science and Engineering} \\
+    \textit{Ritsumeikan University}\\
+    Kusatsu, Japan \\
+    accel@ngc.is.ritsumei.ac.jp}
+  \and
+  \IEEEauthorblockN{3\textsuperscript{rd} Shigeru Yamashita}
+  \IEEEauthorblockA{\textit{Graduate School of} \\
+    \textit{ Information Science and Engineering} \\
+    \textit{Ritsumeikan University}\\
+    Kusatsu, Japan\\
+    ger@ngc.is.ritsumei.ac.jp}
+}
+
+\maketitle
+
+\begin{abstract}
+
+  In quantum circuit design, it is very important to reduce the T-depth. Decomposition
+  methods of Multiple Controlled Toffoli (MCT) gates that reduce the T-depth have been
+  researched. In existing decomposition methods of MCT gates, the T-depth of MCT gates
+  is reduced by devising the decomposition. When decomposing multiple MCT gates,
+  differences in the T-depth for each bit occur. Existing decomposition methods of MCT
+  gates do not consider the T-depth for each bit, so existing decomposition methods of
+  MCT gates may not be optimal. In this paper, we propose a method to reduce the T-depth
+  by decomposing MCT gates while considering the T-depth for each bit. In the proposed
+  method, bits with small T-depth are used preferentially, and the T-depth is reduced
+  by decomposing MCT gates. In addition, the T-depth of the entire circuit is reduced
+  by determining the decomposition of MCT gates while considering the subsequent gates.
+  We confirmed that the proposed method can reduce the T-depth by an average of 17.1\%
+  compared to existing methods. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+relative-phase Toffoli gates (RTOF), circuit optimization, LUT, synthesis
+\end{IEEEkeywords}
+
+
+\input{Intro.tex}
+\input{Pre.tex}
+%% \input{Mot.tex}
+%% \input{Pro.tex}
+%% \input{Exp.tex}
+%% \input{Concl.tex}
+
+%\renewcommand{\baselinestretch}{1.2}
+\vspace{-0.3cm}
+%\renewcommand{\baselinestretch}{1.0}
+\bibliographystyle{plain}
+\bibliography{ref}
+%\vspace{12pt}
+\end{document}

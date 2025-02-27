@@ -1,0 +1,72 @@
+\documentclass[a4paper,12pt,dvipdfmx]{jreport}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{comment}
+\usepackage{cite} 
+\usepackage{url}
+\usepackage{ascmac}
+\usepackage{amsmath}
+\usepackage{algorithm, algpseudocode}
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\usepackage{siunitx}
+\usepackage{enumerate}
+
+%%% sty
+\usepackage{sty/master_thesis}
+\usepackage[a4paper,textheight=21.7cm,top=3cm,left=2cm,right=2cm,headheight=15pt]{geometry}
+
+% しおり（bookmark）つきのpdf文書作成
+\usepackage[dvipdfmx,%
+ bookmarks=true,%
+ bookmarksnumbered=true,%
+ colorlinks=false,
+ pdfborder={0 0 0}]{hyperref}
+\AtBeginDvi{\special{pdf:tounicode EUC-UCS2}}
+
+% ヘッダに章の名前を表示
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\small 第\ \thechapter\ 章 #1}{}}
+\rhead{\leftmark}
+\lhead{}
+\makeatother
+
+\年度{2024}
+\題目{ビットごとのT-depthを考慮した\\ MCTゲートの分解手法}
+\指導教官{山下 茂}
+\学籍番号{6611230046-6}
+\氏名{廣野 航輝}
+\コース{計算機科学コース} %計算機科学コース or 人間情報科学コース
+
+\begin{document}
+\baselineskip 1.9zw
+\maketitle
+
+
+\newpage
+\thispagestyle{empty}
+\pagenumbering{roman}
+\setcounter{page}{1}
+\input{0-abstract}
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+
+\newpage
+\pagenumbering{arabic}
+\input{1-introduction}
+\input{2-preparation}
+\input{3-preparation}
+\input{4-propose}
+\input{5-experiment}
+\input{6-conclusion}
+\input{7-acknowledgement}
+
+\bibliographystyle{junsrt}
+\bibliography{ref}
+\end{document}
