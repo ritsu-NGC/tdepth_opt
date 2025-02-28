@@ -1,0 +1,106 @@
+﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                       %
+%               NGC研究室テンプレートファイル           %
+%                                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% memo
+% 文字色の切り替えは，30行目あたり
+% 卒論，修論の切り替えは110-135行目あたり
+
+\usepackage{color}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage[titles]{tocloft}
+
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%　　注意事項　　%%%%%%%%%%%%%%%%%%%%%
+%
+%　文字列の色を変える場合：　\色名out{変える文字列}とする。
+%	例：赤色に変えたい場合： \redout{ほげほげ}
+%
+% 文字列の色の変更をキャンセルして黒文字に戻したい場合：　
+%	24行目の「\NGCcolor=0」を「\NGCcolor=1」に書き換える
+%
+% 黒くした文字列にまた色を付けたい場合：　
+%	24行目の「\NGCcolor=1」を「\NGCcolor=0」に書き換える
+%
+%%%%%%%%%%%%%%%%%%%%%　　注意事項　　%%%%%%%%%%%%%%%%%%%%%
+
+% 0でコメント色分け表示 1で黒文字のみの表示
+\newcount\NGCcolor
+\NGCcolor=1
+
+% タイトルに使うフォント
+\newcommand{\titlefont}{\mcfamily} % 明朝体
+%\newcommand{\titlefont}{\gtfamily\bf} % ゴシック体、太字
+
+% example. \redout{}, \rout{}で赤文字
+\ifnum\NGCcolor<1
+
+\newcommand{\rout}[1]{\textcolor{red}{#1}}
+\newcommand{\bout}[1]{\textcolor{blue}{#1}}
+\newcommand{\gout}[1]{\textcolor{green}{#1}}
+\newcommand{\cout}[1]{\textcolor{cyan}{#1}}
+\newcommand{\mout}[1]{\textcolor{magenta}{#1}}
+\newcommand{\yout}[1]{\textcolor{yellow}{#1}}
+
+\newcommand{\redout}[1]{\textcolor{red}{#1}}
+\newcommand{\blueout}[1]{\textcolor{blue}{#1}}
+\newcommand{\greenout}[1]{\textcolor{green}{#1}}
+\newcommand{\cyannout}[1]{\textcolor{cyan}{#1}}
+\newcommand{\magentaout}[1]{\textcolor{magenta}{#1}}
+\newcommand{\yellowout}[1]{\textcolor{yellow}{#1}}
+\else
+\newcommand{\rout}[1]{#1}
+\newcommand{\bout}[1]{#1}
+\newcommand{\gout}[1]{#1}
+\newcommand{\cout}[1]{#1}
+\newcommand{\mout}[1]{#1}
+\newcommand{\yout}[1]{#1}
+
+\newcommand{\redout}[1]{#1}
+\newcommand{\blueout}[1]{#1}
+\newcommand{\greenout}[1]{#1}
+\newcommand{\cyannout}[1]{#1}
+\newcommand{\magentaout}[1]{#1}
+\newcommand{\yellowout}[1]{#1}
+\fi
+
+% 図・表がページ全体を占めても良い割合を少し増やす
+\renewcommand{\topfraction}{0.6} % 上部で占める最大の割合
+\renewcommand{\bottomfraction}{0.6} % 下部で占める最大の割合
+\renewcommand{\textfraction}{0.4} % テキストが占める最小割合
+\renewcommand{\floatpagefraction}{0.6} % 単独になるときの最小割合
+
+%% % 図と表とキャプションの間
+%% \setlength{\abovecaptionskip}{1mm}
+%% \setlength{\belowcaptionskip}{1mm}
+
+%% algorithm関連
+% true, falseの定義
+% \algnewcommand\True{\textbf{true}\space}
+\algnewcommand\True{\textbf{true}}
+% \algnewcommand\False{\textbf{false}\space}
+\algnewcommand\False{\textbf{false}}
+
+\makeatletter
+
+% % 2カラムでも強制的に1カラムにする環境(begin-end)
+% \newenvironment{alwayssingle}{
+%   \@restonecolfalse
+%   \if@twocolumn\@restonecoltrue\onecolumn
+%   \else\if@openright\cleardoublepage\else\clearpage\fi
+%   \fi
+% }{
+%   \if@restonecol\twocolumn
+%   \else\newpage\thispagestyle{empty}\fi
+% }
+
+
