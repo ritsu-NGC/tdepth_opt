@@ -1,0 +1,7 @@
+\Qcircuit @C=0.5em @R=0.2em @!R { \\
+          \lstick{\ket{x_0} (b)}  & \ctrl{2}                     & \qw &          & &  \qw               &  \qw               & \qw                       & \ctrl{2} & \qw                       & \qw      & \qw               & \ctrl{2} & \qw                         & \qw               &  \qw                         & \rstick{\ket{x_0}}\\ 
+          \lstick{\ket{x_1} (a)}  & \push{\rtofsctrl}\qwx[1]\qw  & \qw & \push{=} & &  \qw               &  \qw               & \qw                       & \qw      & \qw                       & \ctrl{1} & \qw               & \qw      & \qw                         & \qw               &  \qw                         & \rstick{\ket{x_1}}\\                                                
+          \lstick{\ket{x_3}}      & \push{\rtofstarg}\qw         & \qw &          & &  \gate{\mathrm{S}} &  \gate{\mathrm{H}} & \gate{\mathrm{T^\dagger}} & \targ    & \gate{\mathrm{T}} & \targ    & \gate{\mathrm{T}} & \targ    & \gate{\mathrm{T^{\dagger}}} & \gate{\mathrm{H}} &  \gate{\mathrm{S^{\dagger}}} & \rstick{\ket{F}}\\
+                             & \rstick{\ket{F} = e^{i\pi (\overline{x_0} x_1  x_2)} \ket{(x_0 \cdot x_1) \oplus x_2}}\\
+                             &
+}

@@ -5,6 +5,7 @@
 \usepackage{float}
 \usepackage{cite}
 \usepackage{caption}
+\usepackage{subcaption}
 \usepackage{amsmath,amssymb,amsfonts}
 % \usepackage{algorithmic}
 \usepackage[dvipdfmx]{graphicx}
@@ -31,7 +32,9 @@
 \newtheorem{definition}{Definition}
 \newtheorem{example}{Example}
 \algrenewcommand\algorithmicindent{0.5em}%
-
+\makeatletter
+\newcommand{\sublabel}[1]{\protected@edef\@currentlabel{\thefigure(\thesubfigure)}\label{#1}}
+\makeatother
 \newcommand{\thickhline}{%
     \noalign {\ifnum 0=`}\fi \hrule height 1pt
     \futurelet \reserved@a \@xhline

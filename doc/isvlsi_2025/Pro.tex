@@ -29,7 +29,7 @@ if we calculate the bitwise T-depth from the left side of the Toffoli gate,
 the bitwise T-depth after execution of the Toffoli gate can be considered to be $\max\{q_{x},q_{y},q_{z}\}+3$.
 \begin{figure}
 \centering
-\includegraphics[width=12cm]{img/toffoli_bit.pdf}
+\includegraphics[width=0.95\linewidth]{img/toffoli_bit.pdf}
 \caption{T-depth per bit of Toffoli gate}
 \label{toffoli_bit}
 \end{figure}
@@ -69,7 +69,7 @@ For this reason, by prioritizing bits with smaller T-depths
 and decomposing the MCT gate, the T-depth for the entire circuit can be reduced.
 \begin{figure}
 \centering
-\includegraphics[width=14cm]{img/bit_tdepth.pdf}
+\includegraphics[width=0.95\linewidth]{img/bit_tdepth.pdf}
 \caption{T-depth per bit of the circuit in Figure~\ref{techmap}}
 \label{bit_tdepth}
 \end{figure}
@@ -86,7 +86,7 @@ On the other hand, in Figure~\ref{consider_tdepth},
 the maximum T-depth of the bits after decomposition is reduced by using the control bits and auxiliary bits in ascending order of T-depth.
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=10cm]{img/considering_bit_tdepth.pdf}
+\includegraphics[width=0.95\linewidth]{img/considering_bit_tdepth.pdf}
 \caption{An example of decomposing an MCT gate with 3 control bits while considering the T-depth for each bit}
 \label{consider_tdepth}
 \end{figure}
@@ -170,7 +170,7 @@ If the placed Toffoli gates are replaced with $CCiZ, CCi\omega Z$ gates using me
 it will look like the right side of Figure~\ref{b2mapping_proposed}. The maximum T-depth in this case is 24.
 \begin{figure}
 \centering
-\includegraphics[width=18cm]{img/b2_mapping_proposed.pdf}
+\includegraphics[width=0.95\linewidth]{img/b2_mapping_proposed.pdf}
 \caption{An example of decomposing an MCT gate with 4 control bits using method 1, taking into account the T-depth for each bit}
 \label{b2mapping_proposed}
 \end{figure}
@@ -246,7 +246,7 @@ each gate can be decomposed while taking into account the T-depth for each bit.
 \par
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{img/mimap_proposed.pdf}
+\includegraphics[width=0.95\linewidth]{img/mimap_proposed.pdf}
 \caption{An example of decomposing an MCT gate with 6 control bits using method ~2, taking into account the T-depth for each bit}
 \label{mimap_proposed}
 \end{figure}
@@ -373,7 +373,7 @@ $g_{5}$ is decomposed using the smallest T-depth bit $c_{4}$ from the decomposit
 After decomposing all gates, the maximum T-depth is 41. }
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=10cm]{img/baker_proposed.pdf}
+\includegraphics[width=0.95\linewidth]{img/baker_proposed.pdf}
 \caption{An example of decomposing an MCT gate with $c=5$ using method 3, taking into account the T-depth of each bit, with two auxiliary bits of indefinite value}
 \label{baker_proposed}
 \end{figure}
@@ -552,7 +552,7 @@ the formula~\ref{eq:niemann_gates} to determine the decomposition.
 
 \centering
 
-\includegraphics[width=10cm]{img/niemann_proposed.pdf}
+\includegraphics[width=0.95\linewidth]{img/niemann_proposed.pdf}
 
 \caption{An example of decomposing an MCT gate with $c=9$ using two auxiliary bits with a value of 0,
 taking into account the T-depth for each bit, and method~4.}
@@ -658,7 +658,7 @@ In this section, we explain the decomposition of MCT gates in reverse order.
 
 \centering
 
-\includegraphics[width=10cm]{img/reverse_mct.pdf}
+\includegraphics[width=0.95\linewidth]{img/reverse_mct.pdf}
 
 \caption{Decomposition of an MCT gate with 3 control bits and its decomposition in reverse order}
 
@@ -780,7 +780,7 @@ while in the example on the right side,
 the maximum T-depth is 53.
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=10cm]{img/select_ancilla_biit_tdepth.pdf}
+\includegraphics[width=0.95\linewidth]{img/select_ancilla_biit_tdepth.pdf}
 \caption{Example of change in T-depth by selecting auxiliary bits for two MCT gates}
 \label{select_ancilla_tdepth}
 \end{figure}
@@ -845,7 +845,7 @@ In this example, $D_{3}$ is determined as the decomposition of $g_{1}$.
 
 \centering
 
-\includegraphics[width=8cm]{img/mct_beam.pdf}
+\includegraphics[width=0.95\linewidth]{img/mct_beam.pdf}
 
 \caption{Figure~\ref{select_ancilla_tdepth} shows how the decomposition of $g_{1}$ is determined according to Algorithm~\ref{alg:mct_beam}}
 
@@ -864,7 +864,7 @@ Figure~\ref{mct_beam} shows how a beam search with a search depth of 2 and width
 Figure~\ref{bad_consider_tdepth} shows how the decomposition of the MCT gate is determined taking into account subsequent gates.
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=10cm]{img/mct_beam.pdf}
+\includegraphics[width=0.95\linewidth]{img/mct_beam.pdf}
 \caption{Example of change in T-depth by selecting auxiliary bits for two MCT gates}
 \label{mct_beam}
 \end{figure}
