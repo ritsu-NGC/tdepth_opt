@@ -1,46 +1,46 @@
-\section{Basic knowledge}
-This chapter explains the basics of quantum circuits, quantum gates, and beam searches.
-\begin{figure}[t]
-  \begin{minipage}[t]{.22\textwidth}
-    \centering
-    \scalebox{1.0}{
-      \input{img/cnot}
-    }
-    \subcaption{CNOT-gate}
-    \sublabel{fig-cnot}
-    \centering
-    \scalebox{1.0} {
-      \input{img/Tgate}
-    }
-    \subcaption{T-gate}
-    \sublabel{fig-tgate}
-    \centering
-    \scalebox{1.0} {
-      \input{img/NOTgate}
-    }
-    \subcaption{NOT gate}
-    \sublabel{fig-notgate}
-  \end{minipage}
-  \begin{minipage}[t]{.22\textwidth}
-    \vspace{5mm}
-    \centering
-    \hspace{5mm}
-    \centering
-    \scalebox{1.0} {
-      \input{img/Hgate}
-    }
-    \subcaption{H-gate}
-    \sublabel{fig-hgate}
-    \centering
-    \scalebox{1.0} {
-      \input{img/Tdgate}
-    }
-    \subcaption{$T^{\dagger}$-gate}
-    \sublabel{fig-tdgate}
-  \end{minipage}
-  \caption{\blueout{The H, CNOT, T , NOT gates}}
-  \label{fig-basis}
-\end{figure}
+\section{Preliminary Knowledge}
+This chapter explains the basics of qubits, quantum gates, and quantum circuits.
+%% \begin{figure}[t]
+%%   \begin{minipage}[t]{.22\textwidth}
+%%     \centering
+%%     \scalebox{1.0}{
+%%       \input{img/cnot}
+%%     }
+%%     \subcaption{CNOT-gate}
+%%     \sublabel{fig-cnot}
+%%     \centering
+%%     \scalebox{1.0} {
+%%       \input{img/Tgate}
+%%     }
+%%     \subcaption{T-gate}
+%%     \sublabel{fig-tgate}
+%%     \centering
+%%     \scalebox{1.0} {
+%%       \input{img/NOTgate}
+%%     }
+%%     \subcaption{NOT gate}
+%%     \sublabel{fig-notgate}
+%%   \end{minipage}
+%%   \begin{minipage}[t]{.22\textwidth}
+%%     \vspace{5mm}
+%%     \centering
+%%     \hspace{5mm}
+%%     \centering
+%%     \scalebox{1.0} {
+%%       \input{img/Hgate}
+%%     }
+%%     \subcaption{H-gate}
+%%     \sublabel{fig-hgate}
+%%     \centering
+%%     \scalebox{1.0} {
+%%       \input{img/Tdgate}
+%%     }
+%%     \subcaption{$T^{\dagger}$-gate}
+%%     \sublabel{fig-tdgate}
+%%   \end{minipage}
+%%   \caption{\blueout{The H, CNOT, T , NOT gates}}
+%%   \label{fig-basis}
+%% \end{figure}
 
 \subsection{Quantum Gates and Quantum Circuits}
 \label{Subsec:qubits}
@@ -48,7 +48,7 @@ Quantum computers internally represent data as \emph{qubits}, which are quantum 
 take on the states $\ket{0}$ and $\ket{1}$.  We can combine these qubits into bit strings to
 create multi-qubit states. In particular, there exists a specific set of these called
 \emph{computational basis states} which are of the form $\ket{x_0}\otimes\ket{x_1}\otimes\cdots\otimes\ket{x_{n-1}}=\ket{\mathbf{x}}$ where $x_{0}x_{1}\cdots{x_{n-1}}=\mathbf{x}$, for $\mathbf{x} \in \{0,1\}^n$,
-where $n$ is the number of qubits in the system, and $\otimes$ is tensor multiplication between quantum states~\cite{bib-mike-and-ike}. These computational basis states
+where $n$ is the number of qubits in the system, and $\otimes$ is tensor multiplication between quantum states~\cite{nielsen2010quantum}. These computational basis states
 can in turn be used in linear combination to express a generalized quantum state
 $\ket{\psi} = \sum_{k \in [0,1]^n} e^{i {\theta}(\mathbf{k})} \ket{\mathbf{k}}, \mathbf{k} \in \{0,1\}^n$, where ${\theta}(\mathbf{k})\in [-\pi,\pi]$ is
 an arbitrary phase that is a function of $k$. 
@@ -56,14 +56,15 @@ an arbitrary phase that is a function of $k$.
 \emph{Quantum gates} map quantum states $\ket{\psi} = \sum_{k \in [0,1]^n} e^{i {\theta}(k)} \ket{k}$ to
 other quantum states $\ket{\phi} = \sum_{j \in [0,1]^n} e^{i {\theta}(j)} \ket{j}$.
 
-In this paper, we consider the elementary gate set consisting of the $H$-gate, $\mathit{CNOT}$, $T$-gate, $T^{\dagger}$-gate  (the inverse of the $T$-gate), and $NOT$-gate. We describe
-their behavior in Fig. \ref{fig-basis}. In the fault-tolerant paradigm, $T$-gates and $T^{\dagger}$-gates are much more expensive to implement than
+%We describe their behavior in Fig. \ref{fig-basis}. 
+
+In this paper, we consider the elementary gate set consisting of the $H$-gate, $\mathit{CNOT}$, $T$-gate, $T^{\dagger}$-gate  (the inverse of the $T$-gate), and $NOT$-gate. In the fault-tolerant paradigm, $T$-gates and $T^{\dagger}$-gates are much more expensive to implement than
 $H$-gate, $CNOT$, and $NOT$-gates. Hereafter, we will refer to the set of the T-gate and the T$^{\dagger}$-gate as ``T-gates'', unless otherwise noted.
 
 When this set of gates is assembled into a network, we call the result a \emph{quantum circuit}. In a quantum circuit, inputs come in from the left, gates are applied in order from left to right, and outputs go out from
 the right. Quantum circuits also have \emph{output qubits}, which are the qubits that output quantum states to be measured or used by other quantum circuits. The largest number of T-gates in series
 
-\subsection{Toffoli gate}
+\subsection{Toffoli Gate}
 The Toffoli gate is a three-qubit quantum gate consisting of two control bits and one target bit.
 The Toffoli gate inverts the value of the target bit when the values of all control bits are 1.
 To realize the operation of the Toffoli gate, it is necessary to decompose it into a group of Clifford+T gates.
@@ -93,11 +94,11 @@ The MCT gate inverts the value of the target bit when the values of all control 
 
 MCT gates, like Toffoli gates, need to be decomposed into a group of Clifford+T gates.
 To decompose an MCT gate with three or more control bits,
-it is necessary to use bits called auxiliary bits that temporarily store values.
+it is necessary to use bits called ancilla qubits that temporarily store values.
 
-The auxiliary bits used here need to restore their values.
+The ancilla qubits used here need to restore their values.
 \gout{MCT gates are once decomposed into}
-gates that can be decomposed into Clifford+T without auxiliary bits,
+gates that can be decomposed into Clifford+T without ancilla qubits,
 such as Toffoli gates. 
 Then, the decomposed gates are decomposed into a group of Clifford+T gates.
 \par
@@ -108,397 +109,37 @@ Figure~\ref{barenco} shows an example of decomposing an MCT gate with four contr
 \caption{Example of decomposition of MCT gate into Toffoli gates}
 \label{barenco}
 \end{figure}
-In Figure~\ref{barenco}, the MCT gate is decomposed into Toffoli gates using auxiliary bits $a_{0} and a_{1}$ with undefined values.
-If the number of control bits of the MCT gate is $c$, the MCT gate can be decomposed into $4(c-2)$ Toffoli gates using $c-2$ auxiliary bits with undefined values\cite{barenco1995elementary}.
-In the example in Figure~\ref{barenco}, the MCT gate with 4 control bits is decomposed into 8 Toffoli gates using 2 auxiliary bits with undefined values.
+In Figure~\ref{barenco}, the MCT gate is decomposed into Toffoli gates using ancilla qubits $a_{0} and a_{1}$ with undefined values.
+If the number of control bits of the MCT gate is $c$, the MCT gate can be decomposed into $4(c-2)$ Toffoli gates using $c-2$ ancilla qubits with undefined values\cite{barenco1995elementary}.
+In the example in Figure~\ref{barenco}, the MCT gate with 4 control bits is decomposed into 8 Toffoli gates using 2 ancilla qubits with undefined values.
 
-\section{Decomposition method of MCT gates}
-In this chapter, we explain the existing \bout{decomposition method\cite{abdessaied2016technology,baker2019decomposing,niemann2019t}} of MCT gates.
+\begin{table}
+  \begin{tabular}{c|c|c|c}
+    \hline
+    Method   & Ref                             & \#Aux  & T-depth \\\hline
+    Method~1 & \cite{abdessaied2016technology} & $c-2$ & $4(c-1)$\\\hline 
+    Method~2 & \cite{abdessaied2016technology} & $<c-2$ & $8(c-1)-8+4=8c-20$ \\\hline
+    Method~3 & \cite{baker2019decomposing}     & $2 to c-3$ & $6\cdot (2 \cdot log c-3$\\\hline
+    Method~4 & \cite{niemann2019t}             & $c-2$ & $4\lceil log2(c) \rceil - 1$\\\hline            
+  \end{tabular}
+  \caption{Summary MCT Decomposition Methods}
+  \label{decomp-table}
+\end{table}
 
-Hereafter, the number of control bits of MCT gates is $c$.
+\section{MCT Decomposition}
+In this chapter, we explain the existing \bout{decomposition method\cite{abdessaied2016technology,baker2019decomposing,niemann2019t}} of MCT gates. We denote the number of control bits of each MCT gate as $c$. They are summarized in Table~\ref{decomp-table}. {\it Method} displays how the method is referred to in this paper, {\it Ref} is the source citation for the method, {\it \#Aux} is the number of ancilla qubits available, and {\it T-depth} is the worst case T-depth for each method. 
 
-\subsection{Method~1}
-In this section, we explain the decomposition method \cite{abdessaied2016technology} of MCT gates that uses $c-2$ auxiliary bits with indefinite values. Hereafter, this method will be called Method~1.
+In the interest of space, we only explain the decomposition method in \cite{abdessaied2016technology}, hereafter called Method~1. This should give an intuitive feel for how such a decomposition can reduce the T-depth, and more details for each method are available in the associated citation.
 
-\bout{Method~1} is a method to reduce the T-depth of the method \cite{barenco1995elementary} that decomposes MCT gates into Toffoli gates.
+\bout{Method~1} uses $c-2$ ancilla qubits with indefinite values to reduce the T-depth of the method \cite{barenco1995elementary} that decomposes MCT gates into Toffoli gates.
 
-In Method~1, the T-depth is reduced by replacing Toffoli gates with out-of-phase $CCiZ, CCi\omega Z$ gates.
+In Method~1, the T-depth is reduced by replacing Toffoli gates with out-of-phase $CCiZ, CCi\omega Z$ gates, both of which can be implemented in T-depth of 1 with no additional ancilla. The result is depicted in Fig.~\ref{barenco_iz_to_iomegaz}.
 
 \begin{figure}[tbp]
 \centering
 \includegraphics[width=0.95\linewidth]{img/barenco_iz_to_iomegaz.pdf}
-\caption{Replacement of $CCiZ$ and $CCiZ^{\dag}$ gates in Figure~\ref{ccz_to_iz_cs} with $CCi\omega Z, T^{\dag}$ gates, respectively.}
+\caption{Replacement of Toffoli gates in a MCT gate decomposition with $CCiZ$ and $CCi\omega Z$ gates.}
 
 \label{barenco_iz_to_iomegaz}
 
-\end{figure}
-
-\begin{figure}[tbp]
-
-\centering
-
-\includegraphics[width=0.9\columnwidth]{img/techmap.pdf}
-
-\caption{Application of method 1 to MCT gates with $c=4$}
-
-\label{techmap}
-
-\end{figure}
-
-\par
-Method 1 uses $c-2$ auxiliary bits to decompose the MCT gate into 4 $CCiZ$ gates and $4(c-3)$ $CCi\omega Z$ gates.
-
-The decomposition of the $CCiZ$ gate and the $CCi\omega Z$ gate into Clifford+T is shown in Figure 1 and Figure 2, respectively.
-
-The T-depth of the $CCiZ$ gate is 2, and the T-depth of the $CCi\omega Z$ gate is 1.
-
-Therefore, the maximum T-depth of the MCT gate decomposed by method 1 is $4(c-1)$.
-
-\begin{figure}[tbp]
-
-\centering
-
-\begin{minipage}[b]{0.49\columnwidth}
-
-\centering
-
-\includegraphics[width=0.9\columnwidth]{img/cciz.pdf}
-
-\caption{Decomposition of $CCiZ$ gate into Clifford+T}
-
-\label{cciz}
-
-\end{minipage}
-
-\begin{minipage}[b]{0.49\columnwidth}
-
-\centering
-
-\includegraphics[width=0.9\columnwidth]{img/cciomegaz.pdf}
-
-\caption{$Decomposition of CCi\omega Z$ gate into Clifford+T}
-\label{cciomegaz}
-\end{minipage}
-\end{figure}
-\subsection{Method~2}
-In this section, we explain the decomposition method \cite{abdessaied2016technology} that uses one auxiliary bit with an undefined value.
-Hereafter, we will refer to this method as Method~2.
-\par
-When there are fewer than $c-2$ auxiliary bits with undefined values, the MCT gate cannot be decomposed using Method~1.
-%We explain how to decompose the control bits into two.
-\bout{Therefore, we divide the $c$ control bits into two sets of bits.
-At this time, we divide them so that the difference in the number of elements in the two sets of bits is within one. }
-Then, as shown in Figure~\ref{mimap},
-the MCT gate is decomposed into four MCT gates,
-$g_{1}, g_{2}, g_{3}, g_{4}$, and four $C\omega S$ gates,
-which have the set of split bits as their control bits.
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{img/mimapping.pdf}
-\caption{Application of method~2 to MCT gate with $c=7$}
-\label{mimap}
-\end{figure}
-Here, $g_{3}$ is a copy of $g_{1}$, and $g_{4}$ is a copy of $g_{2}$.
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=5cm]{img/comegas.pdf}
-\caption{Decomposition of $C\omega S$ gate into Clifford+T}
-\label{comegas}
-\end{figure}
-As shown in Figure~\ref{comegas},
-the $C\omega S$ gate can be decomposed directly into Clifford+T without using auxiliary bits.
-In Method~2,
-by applying Method~1 to the four decomposed MCT gates,
-the MCT gate can be decomposed into Clifford+T.
-\par
-In Method~2,
-the same auxiliary bits are used to replace $g_{3}$ in Figure~\ref{mimap} with the decomposition of $g_{1}$, and $g_{4}$ with the decomposition of $g_{2}$,
-and the T-depth is reduced by decomposing in the reverse order.
-\mout{
-Figure~\ref{mimap_g2_g4}
-shows an example of decomposing $g_{2}$ in Figure~\ref{mimap},
-replacing $g_{4}$ with gates of the inverse transformation for the decomposition of $g_{2}$, and decomposing in the reverse order.
-$G_{2} and G_{4}$ in Figure~\ref{mimap_g2_g4} represent the decomposition of $g_{2} and g_{4}$.
-$G_{4}$ is the gates that make up $G_{2}$ replaced with gates of the inverse transformation, and decomposed in the reverse order. }
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{img/mimap_g2_g4.pdf}
-\caption{\mout{An example of decomposing $g_{2}$ in Figure~\ref{mimap}, replacing $g_{4}$ with a gate that is the inverse transformation of the decomposition of $g_{2}$, and decomposing in the reverse order}}
-\label{mimap_g2_g4}
-\end{figure}
-As shown in Figure~\ref{iz_to_iomegaz},
-\bout{The $CCiZ gate$ and $CCiZ^{\dag}$ gate can be replaced by the $CCi\omega Z, T^{\dag}$ gate and the $CCi\omega Z^{\dag}, T$ gate, respectively. }
-Figure~\ref{mimap_g2_g4_trans} shows an example in which the \bout{$CCiZ gate$ and $CCiZ^{\dag}$ gate in Figure~\ref{mimap_g2_g4} are replaced with the $CCi\omega Z, T^{\dag}$ and $CCi\omega Z^{\dag}, T$ gates, respectively}
-
-.
-\mout{
-The $T$ gate $T_{4}$ in Figure~\ref{mimap_g2_g4_trans} restores the operation of the $T^{\dag}$ gate $T_{1}$.
-
-These gates can be deleted because their absence does not affect the results of the calculation.
-
-Similarly, $T_{2} and T_{3}$ in Figure~\ref{mimap_g2_g4_trans} can also be deleted.}
-\par
-In this way, by decomposing the pair $g_{1}, g_{3}$ and the pair $g_{2}, g_{4}$,
-a total of eight $CCiZ, CCiZ^{\dag}$ gates can be replaced with $CCi\omega Z, CCi\omega Z^{\dag}$ gates, and the T-depth can be reduced by 8 from before the substitution.
-
-To allow one difference in the control bits and divide evenly,
-the total T-depth of the four MCT gates before the substitution when decomposed using method 1 is
-$2 \cdot 4(\lfloor \frac{c}{2} \rfloor -1) +2\cdot 4(\lceil \frac{c}{2} \rceil -1)=8(c-1)$.
-
-In addition, because four $C\omega S$ gates are used, the total T-depth of these gates is $4$. 
-Therefore, when an MCT gate with $c$ control bits is decomposed using method 2, the maximum T-depth is $8(c-1)-8+4=8c-20$.
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{img/mimap_g2_g4_transform.pdf}
-\caption{Figure~\ref{mimap_g2_g4}\bout{An example of replacing the $CCiZ and CCiZ^{\dag}$ gates with $CCi\omega Z, T^{\dag}$ gates and $CCi\omega Z^{\dag}, T$ gates, respectively}}
-\label{mimap_g2_g4_trans}
-\end{figure}
-\subsection{Method~3}
-In this section, we explain the method\cite{baker2019decomposing}, which uses 2 to $c-3$ auxiliary bits with indefinite values to decompose MCT gates.
-Hereafter, we will refer to this method as Method~3.
-As shown in Figure~\ref{baker},
-
-Method~3 is a method to reduce T-depth by decomposing MCT gates $g_{1}$ or $g_{4}$, which require a small number of copies, using many control bits.
-
-In Figure~\ref{baker}, $g_{1}$ has only $g_{7}$ copies,
-
-but $g_{2}$ has $g_{6}, g_{8}, and g_{13}$ copies,
-
-so $g_{1}$ can be said to be a gate with a small number of copies.
-
-For $g_{4}$, the only copy is $g_{10}$.
-
-\par
-The decomposition method of Method~3 is explained below.
-
-Let $C$ be a set of $c$ control bits of the MCT gate to be decomposed.
-
-Let $t$ be the target bit of the MCT gate to be decomposed.
-\mout{Let $a_{1}, a_{2}, \dots, a_{m}$ be the $m$ auxiliary bits with indefinite values that can be used to decompose MCT gates. }
-As shown in Figure~\ref{baker}, once the arrangement of $g_{1}, g_{2}, g_{3}, and g_{4}$ is determined,
-the gates to the right of $g_{4}$ are copies of $g_{1}, g_{2}, g_{3}, and g_{4}$, so the decomposition of method~3 can be\rout{determined}.
-In other words, once the arrangement of the bits that make up the $m+1$ gates from the left is determined, the decomposition of method~3 can be\rout{determined}.
-Let the $m+1$ MCT gates from the left be $g_{1}, \dots, and g_{m+1}$, respectively.
-The sets of control bits owned by $g_{1},\dots ,g_{m+1}$ are denoted by $C_{1}, C_{2},\dots ,C_{m+1}$, respectively.
-
-The number of elements in the set is denoted by $|C_{i}|$.
-
-The bits that make up the control bit set $C_{1},\dots ,C_{m+1}$ are determined according to the following procedure.
-
-\begin{enumerate}[Step 1]
-
-\item Move $a_{1},\dots,a_{m}$ one by one to $C_{1},\dots ,C_{m}$.
-
-\item Move elements from $C$ to $C_{i}$ so that the number of elements in $C_{1},\dots,C_{m+1}$ is all 2. 
-\item \mout{Move elements from $C$ to $C_{1}$ as long as $C_{1}$ is $|C_{1}|-2 \leq c+m-|C_{1}|$. }
-\item \mout{Move the remaining elements of $C$ to $C_{m+1}$ if $|C|=0$ is not true. }
-\end{enumerate}
-\par
-Next, we explain how to determine the target bits of $g_{1},\dots ,g_{m+1}$.
-The target bit of $g_{1}$ is the target bit $t$ of the MCT gate before decomposition.
-The target bit of $g_{i\geq 2}$ is the bit included in $C_{i-1}$\mout{ distributed in step 1. }
-In this way, the bit arrangement of $g_{1},\dots, g_{m+1}$ is determined.
-\par
-Once the bits that make up $g_{1},\dots,g_{m+1}$ have been determined,
-the gates are placed in the order of equation~\ref{eq:bakerhaiti} from the left side of the circuit.
-\begin{equation}\label{eq:bakerhaiti}
-\{g_{1}, g_{2}, \dots, g_{m+1}\},\{g_{m},g_{m-1}, \dots, g_{1}\}, \{g_{2}, g_{3} \dots, g_{m+1}\}, \{g_{m}, g_{m-1}, \dots, g_{2}\}
-\end{equation}
-Among the gates placed, gates with three or more control bits are decomposed using method 1.
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{img/baker.pdf}
-\caption{Example of application of method ~3 to MCT gate with $c=7$ and 3 undefined auxiliary bits}
-\label{baker}
-\end{figure}
-\par
-The Toffoli gate that appears when applying the decomposition of method ~3 to the MCT gate can be replaced with a $CCiZ, CCi\omega Z$ gate.
-We will explain this method.
-First, the Toffoli gate in Figure ~\ref{baker} can be replaced with a $CCiZ, CCiZ^{\dag}$ gate.
-An example is shown in Figure ~\ref{baker_cciz}.
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{img/baker_izgate_transform.pdf}
-\caption{Replacement of the Toffoli gate in Figure~\ref{baker} with a $CCiZ$ gate}
-\label{baker_cciz}
-\end{figure}
-A pair of Toffoli gates with the same input and output bits is
-Figure~\ref{toffoli_transform} $CCZ$ gates can be replaced with $CCiZ$ gates as shown in Figure~\ref{zgate_transform}.
-
-As shown in Figure~\ref{zgate_to_iz},
-
-$CCZ$ gates can be considered to be the same as the target bit and the control bit.
-
-As shown in Figure~\ref{zgate_to_iz}, $CCZ$ gates can be replaced with $CCiZ$ gates and $CS$ gates, or $CCiZ^{\dag}$ gates and $CS^{\dag}$ gates.
-
-The $CS$ gates and $CS^{\dag}$ gates arranged as shown in Figure~\ref{izgate_transform} cancel each other's operations.
-
-Therefore, the same operation can be expressed even if the $CS$ gates and $CS^{\dag}$ gates are eliminated.
-
-In this way, a pair of Toffoli gates with the same input and output can be replaced with a pair of $CCiZ, CCiZ^{\dag}$ gates.
-Therefore, the Toffoli gate in Figure~\ref{baker} can be replaced with $CCiZ, CCiZ^{\dag}$ gates as shown in Figure~\ref{baker_cciz}.
-\par
-As shown in Figure~\ref{baker_cciomegaz},
-
-\bout{$CCiZ, CCiZ^{\dag}$ gates in Figure~\ref{baker_cciz} can be replaced with $CCi\omega Z$ gates and $T^{\dag}$ gates,
-
-$CCi\omega Z^{\dag}$ gates and $T$ gates, respectively. }
-
-$T, T^{\dag}$ gates in Figure~\ref{baker_cciomegaz} can be deleted because their operations cancel each other out.
-In addition, for the $T^{\dag}, T$ gates $T_{1}, T_{8}$ and $T_{2}, T_{7}$ in Figure~\ref{baker_cciomegaz}, the operation of the \bout{$T^{\dag}$} gates of $T_{1}, T_{2}$ on the left side is restored by the \bout{$T$ gates} of $T_{7}, T_{8}$ on the right side. 
-These gates can also be deleted because their absence does not affect the results of the operation.
-In this way, the Toffoli gates that appear in the decomposition of Method~3 can be replaced with $CCiZ, CCi\omega Z$ gates.
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{img/baker_iomegaz.pdf}
-\caption{An example in which the \bout{$CCiZ, CCiZ^{\dag}$ gates in Figure~\ref{baker_cciz} are replaced with $CCi\omega Z, T^{\dag}$ gates and $CCi\omega Z^{\dag}, T$ gates, respectively}}
-\label{baker_cciomegaz}
-\end{figure}
-\subsection{Method~4}
-In this section,
-we explain the decomposition method\cite{niemann2019t} of MCT gates using auxiliary bits whose value is 0.
-From now on, this method will be called Method~4.
-Method~4 decomposes MCT gates by dividing the cases into based on the number of auxiliary bits whose value is 0, $k$, used in the decomposition.
-Also, let $d$ be the number of auxiliary bits with indefinite values used in the decomposition.
-
-Let $a_{1},\dots, a_{k}$ be the $k$ auxiliary bits with a value of 0. Let $c$ be the number of control bits of the MCT gate to be decomposed.
-
-\subsection*{In the case of $1\leq k \leq \frac{c}{2}$}
-
-In the case of $1\leq k \leq \frac{c}{2}$,
-the MCT gate to be decomposed is decomposed into three stages of MCT gates, as shown in Figure~\ref{niemann}.
-
-Method~1 is applied to each of the decomposed MCT gates to perform the decomposition.
-
-In Method~4, as shown in Figure~\ref{niemann},
-the T-depth is reduced by arranging MCT gates in parallel in the first and third stages by the number of $k$.
-
-\par
-We will explain how to decompose MCT gates into three stages.
-First, the $c$ control bits of the MCT gate to be decomposed are divided into a set of $k+1$ control bits $C_{1},\dots,C_{k+1}$.
-The number of elements in this divided set of control bits is denoted as $|C_{i}|$.
-The arrangement of the three-stage MCT gates is as follows.
-\begin{enumerate}[First stage]
-\item $C_{1},\dots,C_{k}$ are the respective control bits, and $k$ MCT gates are placed with $a_{1},\dots,a_{k}$ as their respective target bits.
-\item $C_{k+1}$ and the $k$ auxiliary bits $a_{1},\dots,a_{k}$ are the control bits, and an MCT gate with the target bit $t$ of the original MCT gate as the target bit is placed in the second stage.
-\item The third row contains the same $k$ MCT gates as the first row.
-
-The third row MCT gate restores the value of the ancillary bits that are 0 to 0.
-
-\end{enumerate}
-\begin{figure}[tbp]
-
-\centering
-
-\includegraphics[width=0.95\linewidth]{img/niemann.pdf}
-
-\caption{Decomposition example of MCT gate for $c=9$ using two ancillary bits with a value of 0}
-
-\label{niemann}
-
-\end{figure}
-
-\par
-Method~1 is used to decompose the MCT gates arranged in three rows.
-
-Therefore, to decompose these MCT gates,
-ancillary bits with undefined values are required according to the number of control bits for each row.
-
-The number of ancillary bits with undefined values required for each row must be considered,
-
-and it is necessary to determine
-$C_{1},\dots,C_{k+1}$.
-
-\par
-The second row MCT gate has $k+|C_{k+1}|$ control bits.
-Therefore, to apply method ~1 to the second-stage MCT gate,
-$k+|C_{k+1}-2|$ auxiliary bits with indefinite values are required.
-Bits not used in the second-stage MCT gate can be used as auxiliary bits with indefinite values.
-Therefore,
-$|C_{1}|+,\dots, +|C_{k}|$ bits used as control bits in the first stage
-can be used as auxiliary bits with indefinite values in the second-stage MCT gate.
-To apply the decomposition of method ~1 to the second-stage MCT gate,
-equation ~\ref{eq:2danme} must be satisfied.
-\begin{equation}\label{eq:2danme}
-d+|C_{1}|+\dots +|C_{k}|\geq (k+|C_{k+1}|)-2
-\end{equation}
-\par
-To apply method~1 to the MCT gates in the first and third stages,
-$(|C_{1}|-2)+\dots+(|C_{k}|-2)$ auxiliary bits with undefined values are required.
-The bits not used in the first and third stages can be used as undefined auxiliary bits.
-Therefore,
-$|C_{k+1}|$ bits used as control bits in the second stage and
-the target bit $t$ in the second stage can be used as undefined auxiliary bits.
-In addition, considering the number $d$ of undefined auxiliary bits used in the decomposition,
-equation \ref{eq:13danme} must be satisfied to apply method~1 to the MCT gates in the first and third stages.
-\begin{eqnarray}\label{eq:13danme} d+|C_{k+1}|+1&\geq& (|C_{1}|-2)+\dots+(|C_{k}|-2)=|C_{1}|+\dots+|C_{k}|-2k \end{eqnarray} \par $C_{1}+\dots +C_{k+1}=c$ and From the expression~\ref{eq:2danme} and the expression~\ref{eq:13danme}, The formula ~\ref{eq:seiyaku} can be derived.
-\begin{equation}\label{eq:seiyaku}
-\frac{c+2-k+d}{2}\geq|C_{k+1}|\geq \frac{c-2k-d-1}{2}
-\end{equation}
-When decomposing MCT gates, if the value of $C_{k+1}$ is set to satisfy equation ~\ref{eq:seiyaku},
-method ~1 can be applied to each decomposed MCT gate.
-\par
-If the MCT gates are simply decomposed to satisfy equation ~\ref{eq:seiyaku},
-the overall T-depth may become large.
-Therefore,
-$C_{1},\dots,C_{k+1}$ must be determined so that the overall \bout{T-depth becomes small}.
-The method for determining this consists of the following three steps.
-\begin{enumerate}[Step (1)]
-\item $|C_{k+1}|$ is the maximum value that satisfies the formula \ref{eq:seiyaku}.
-Then, move the remaining $c-|C_{k+1}|$ control bits evenly to $C_{1},\dots,C_{k}$.
-At this time, the difference between $|C_{1}|,\dots,|C_{k}|$ is allowed to be up to 1.
-\item Move the control bits from $C_{k+1}$ to $C_{1},\dots,C_{k}$ so that the maximum number of $|C_{1}|,\dots,|C_{k}|$ does not increase.
-At this time, move so that $|C_{k+1}|$ satisfies the formula \ref{eq:seiyaku}.
-\item
-If $k\geq 2$ and three or more control bits can be moved from $C_{k+1}$ so that equation \ref{eq:seiyaku} is satisfied,
-
-move the control bits one by one to $C_{1},C_{2}$ and return to step (2).
-
-If not, end.
-
-\end{enumerate}
-
-Based on the above procedure, $C_{1},\dots,C_{k+1}$ are determined and the MCT gates are decomposed into three stages.
-
-\par
-When decomposed using $k=\frac{c}{2}$ auxiliary bits with a value of 0,
-
-as shown in Figure~\ref{niemann_frac_c_2},
-
-the number of control bits for all MCT gates in the first and third stages
-
-is 2.
-
-In this case, the first and third stages are the optimal division of the control bits.
-
-Therefore, even if more auxiliary bits with a value of 0 are added,
-
-the control bits in the first and third stages cannot be further divided.
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{img/niemann_k_frac_c_2.pdf}
-\caption{Example of decomposition of MCT gate $c=9$ using four auxiliary bits with a value of 0}
-\label{niemann_frac_c_2}
-\end{figure}
-\subsection*{When $\frac{c}{2} \bout{<} k \leq c-2$}
-When $k>\frac{c}{2}$,
-first, use $\lfloor\frac{c}{2}\rfloor$ auxiliary bits with a value of 0 to decompose all MCT gates in the first and third stages so that the number of control bits is 2.
-In this case, the number of control bits of the MCT gate in the second stage is $c'=c-\lfloor \frac{c}{2}\rfloor$.
-The remaining number of auxiliary bits with a value of 0 is $k'=k-\lfloor \frac{c}{2} \rfloor$.
-
-Using the remaining $k'$ auxiliary bits with a value of 0,
-\rout{When $k'\leq \frac{c'}{2}$ and when $k' > \frac{c'}{2}$,
-the MCT gate with $c'$ control bits in the second stage is decomposed. }
-\par
-When $k=c-2$,
-as shown in Figure~\ref{niemann_c_2},
-the number of control bits for all decomposed MCT gates is 2.
-
-Therefore, even if more than $c-2$ auxiliary bits with a value of 0 are added,
-the control bits cannot be further divided. 
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{img/niemann_c_2.pdf}
-\caption{Decomposition example of MCT gate for $c=9$ using 7 ancillary bits with value 0}
-\label{niemann_c_2}
 \end{figure}

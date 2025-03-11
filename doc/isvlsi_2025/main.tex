@@ -57,57 +57,61 @@
 
 \begin{document}
 
-\title{Improving T-depth Management in MCT Gate Decomposition}
-\author{\IEEEauthorblockN{1\textsuperscript{st} David Clarino}
-  \IEEEauthorblockA{\textit{Graduate School of} \\
-    \textit{Information Science and Engineering} \\
-    \textit{Ritsumeikan University}\\
-    Kusatsu, Japan \\
-    dizzy@ngc.is.ritsumei.ac.jp}
-  \and
-  \IEEEauthorblockN{2\textsuperscript{nd} Kouki Hirono}
-  \IEEEauthorblockA{\textit{Graduate School of } \\
-    \textit{Information Science and Engineering} \\
-    \textit{Ritsumeikan University}\\
-    Kusatsu, Japan \\
-    accel@ngc.is.ritsumei.ac.jp}
-  \and
-  \IEEEauthorblockN{3\textsuperscript{rd} Shigeru Yamashita}
-  \IEEEauthorblockA{\textit{Graduate School of} \\
-    \textit{ Information Science and Engineering} \\
-    \textit{Ritsumeikan University}\\
-    Kusatsu, Japan\\
-    ger@ngc.is.ritsumei.ac.jp}
-}
+\title{A Decomposition Method for MCT Gates Considering T-depth of Each Qubit}
+
+
+% \author{\IEEEauthorblockN{1\textsuperscript{st} David Clarino}
+%   \IEEEauthorblockA{\textit{Graduate School of} \\
+%     \textit{Information Science and Engineering} \\
+%     \textit{Ritsumeikan University}\\
+%     Kusatsu, Japan \\
+%     dizzy@ngc.is.ritsumei.ac.jp}
+%   \and
+%   \IEEEauthorblockN{2\textsuperscript{nd} Kouki Hirono}
+%   \IEEEauthorblockA{\textit{Graduate School of } \\
+%     \textit{Information Science and Engineering} \\
+%     \textit{Ritsumeikan University}\\
+%     Kusatsu, Japan \\
+%     accel@ngc.is.ritsumei.ac.jp}
+%   \and
+%   \IEEEauthorblockN{3\textsuperscript{rd} Shigeru Yamashita}
+%   \IEEEauthorblockA{\textit{Graduate School of} \\
+%     \textit{ Information Science and Engineering} \\
+%     \textit{Ritsumeikan University}\\
+%     Kusatsu, Japan\\
+%     ger@ngc.is.ritsumei.ac.jp}
+% }
 
 \maketitle
 
 \begin{abstract}
-
-  In quantum circuit design, it is very important to reduce the T-depth. Decomposition
-  methods of Multiple Controlled Toffoli (MCT) gates that reduce the T-depth have been
-  researched. In existing decomposition methods of MCT gates, the T-depth of MCT gates
-  is reduced by devising the decomposition. When decomposing multiple MCT gates,
-  differences in the T-depth for each bit occur. Existing decomposition methods of MCT
-  gates do not consider the T-depth for each bit, so existing decomposition methods of
-  MCT gates may not be optimal. In this paper, we propose a method to reduce the T-depth
-  by decomposing MCT gates while considering the T-depth for each bit. In the proposed
-  method, bits with small T-depth are used preferentially, and the T-depth is reduced
-  by decomposing MCT gates. In addition, the T-depth of the entire circuit is reduced
-  by determining the decomposition of MCT gates while considering the subsequent gates.
+  For realizing future fault-tolerant quantum computation, it is very
+  important to reduce so-called the {\it T-depth} of a target quantum
+  circuit. Thus, there have been many researches to consider how to
+  decompose {\it Multiple Controlled Toffoli (MCT) gates} with few
+  {\it T-depth}; these existing methods does not consider the T-depth
+  of each qubit when they decompose one MCT gate. In contrast to
+  existing methods, this paper proposes to consider the T-depth
+  of each qubit when we decompose an MCT gate; we show
+  that we can decrease the T-depth by considering T-depth of each bit
+  and appropriately selecting ancilla qubits and decomposition
+  methods. In addition, to consider the impact of the decomposition of
+  one MCT gate on the decomposition of subsequent gates, our method
+  utilizes {\it beam search} to select  
+  a possibly best decomposition for each MCT gate. 
   We confirmed that the proposed method can reduce the T-depth by an average of 17.1\%
   compared to existing methods. 
 \end{abstract}
 
 \begin{IEEEkeywords}
-relative-phase Toffoli gates (RTOF), circuit optimization, LUT, synthesis
+ Multiple Controlled Toffoli (MCT) gates, T-depth, ancilla qubits 
 \end{IEEEkeywords}
 
 
 \input{Intro.tex}
 \input{Pre.tex}
 %% \input{Mot.tex}
-\input{Pro.tex}
+%\input{Pro.tex}
 %% \input{Exp.tex}
 %% \input{Concl.tex}
 
